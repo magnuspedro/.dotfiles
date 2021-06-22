@@ -162,7 +162,10 @@ keys = [
          # Printscreen
          Key([], "Print", lazy.spawn("scrot -s 'screenshot-%Y-%m-%d-%s_$wx$h.png' -e 'mv $f ~/Pictures/Screenshots' -e 'xclip -selection clipboard -target image/png -i $f'")),
          # Set 2 monitors 
-         Key([mod], "p", lazy.spawn("xrandr --output eDP1 --mode 1366x768 --pos 0x0 --rotate normal --right-of HDMI1 --output HDMI1 --mode 1600x900 --pos 0x0 --rotate normal --right-of eDP1 --output HDMI2 --off"))
+         Key([mod], "p",
+             lazy.spawn("xrandr --output eDP1 --mode 1366x768 --pos 0x0 --rotate normal --right-of HDMI1 --output HDMI1 --mode 1600x900 --pos 0x0 --rotate normal --right-of eDP1 --output HDMI2 --off"),
+             lazy.restart()
+             )
          # Dmenu scripts launched using the key chord SUPER+p followed by 'key'
          # KeyChord([mod], "p", [
              # Key([], "e",
@@ -256,7 +259,7 @@ layouts = [
          section_bottom = 20,
          level_shift = 8,
          vspace = 3,
-         panel_width = 200
+         panel_width = 100
          ),
     layout.Floating(**layout_theme)
 ]
