@@ -6,3 +6,4 @@ nitrogen --restore &
 volumeicon &
 xmodmap ~/.xmodmap &
 nm-applet &
+dunst &

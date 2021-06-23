@@ -17,10 +17,9 @@ keys = [
              lazy.next_layout(),
              desc='Toggle through layouts'
              ),
-         Key([mod, "shift"], "c",
+         Key([mod], "q",
              lazy.window.kill(),
-             desc='Kill active window'
-             ),
+             desc='Kill active window'),
          Key([mod, "shift"], "r",
              lazy.restart(),
              desc='Restart Qtile'
