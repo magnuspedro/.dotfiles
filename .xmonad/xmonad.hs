@@ -213,18 +213,17 @@ myRemKeys = [
 
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
+
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = insertPosition Below Newer <+> composeAll
     [ -- Firefox
-      title =? "Mozilla Firefox"               --> doShift ( myWorkspaces !! 2 )
+      title =? "Mozilla Firefox"               --> doShift ( myWorkspaces !! 1 )
     , (className =? "Mozilla Firefox" <&&> resource =? "Dialog") --> doFloat
-
     -- Teams
-    , className =? "Microsoft Teams - Preview" --> doShift ( myWorkspaces !! 1 )
+    , className =? "Microsoft Teams - Preview" --> doShift ( head myWorkspaces )
     , title =? "Microsoft Teams-Benachrichtigung"   --> doFloat
-
     -- Slack
-    , className =? "slack"                     --> doShift ( myWorkspaces !! 1 )
+    , className =? "Slack"                     --> doShift ( head myWorkspaces )
     -- Gimp
     , stringProperty "WM_WINDOW_ROLE" =? "gimp-message-dialog" --> doFloat
     -- Generic
