@@ -235,8 +235,8 @@ main = do
         , focusFollowsMouse  = False
         , borderWidth        = 3 
         , terminal           = myTerminal
-        , focusedBorderColor = "#d3869b"
-        , normalBorderColor  = "#f2e5bc"
+        , focusedBorderColor = "#458588"
+        , normalBorderColor  = "#ebdbb2"
         , layoutHook         = myLayoutHook
         , startupHook        = myStartupHook
         , workspaces         = myWorkspaces
@@ -245,9 +245,9 @@ main = do
                 {
                     ppOutput = \x -> hPutStrLn xmproc0 x
                                   >> hPutStrLn xmproc1 x
-                    , ppCurrent = xmobarColor "#b8bb28" ""                -- Current workspace in xmobar
-                    , ppVisible = xmobarColor "#fabd2f" ""                -- Visible but not current ws
-                    , ppHidden = xmobarColor "#fabd2f" ""                 -- Hidden workspaces in xmobar
+                    , ppCurrent = xmobarColor "#b8bb26" ""                -- Current workspace in xmobar
+                    , ppVisible = xmobarColor "#d3869b" ""                -- Visible but not current ws
+                    , ppHidden = xmobarColor "#d3869b" ""                 -- Hidden workspaces in xmobar
                     , ppHiddenNoWindows = xmobarColor "#928374" ""        -- Hidden workspaces (no windows)
                     , ppTitle = xmobarColor "#bdae93" "" . shorten 60     -- Title of active window
                     , ppSep =  " | "                                      -- Separators in xmobar
