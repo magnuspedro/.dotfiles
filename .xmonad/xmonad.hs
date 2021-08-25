@@ -50,7 +50,7 @@ myWorkspaces :: [WorkspaceId]
 myWorkspaces = map show [1..9]
 
 myFont :: String
-myFont = "xft:Mononoki:size=10:antialias=true:hinting=true,xft:FontAwesome:size=8"
+myFont = "xft:Mononoki:size=10:antialias=true:hinting=true,xft:FontAwesome:size=10"
 
 myTerminal :: String
 myTerminal = "alacritty"
@@ -197,6 +197,9 @@ myKeys = [
     , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 5")
     , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 5")
 
+    -- PrintScreen
+    ,("<Print>", spawn "scrot -s '/home/magnus/Pictures/Screenshots/screenshot-%Y-%m-%d-%s_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'")
+
     -- Promt
     , ("M-o", runOrRaisePrompt myXPConfig)
     ]
@@ -205,6 +208,7 @@ myRemKeys :: [String]
 myRemKeys = [
         "M-S-<Return>"
         , "M-S-q"
+        , "M-q"
     ]
 
 windowCount :: X (Maybe String)
