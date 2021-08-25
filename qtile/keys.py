@@ -17,7 +17,7 @@ keys = [
              lazy.next_layout(),
              desc='Toggle through layouts'
              ),
-         Key([mod], "q",
+         Key([mod, "shift"], "p",
              lazy.window.kill(),
              desc='Kill active window'),
          Key([mod, "shift"], "r",
@@ -29,11 +29,11 @@ keys = [
              desc='Shutdown Qtile'
              ),
          ### Switch focus to specific monitor (out of three)
-         Key([mod], "w",
+         Key([mod], "q",
              lazy.to_screen(0),
              desc='Keyboard focus to monitor 1'
              ),
-         Key([mod], "e",
+         Key([mod], "w",
              lazy.to_screen(1),
              desc='Keyboard focus to monitor 2'
              ),
@@ -64,26 +64,32 @@ keys = [
              lazy.layout.up(),
              desc='Move focus up in current stack pane'
              ),
-         Key([mod, "shift"], "j",
-             lazy.layout.shuffle_up(),
-             lazy.layout.section_up(),
-             desc='Move windows down in current stack'
-             ),
-         Key([mod, "shift"], "k",
-             lazy.layout.shuffle_down(),
-             lazy.layout.section_down(),
-             desc='Move windows up in current stack'
-             ),
          Key([mod], "h",
-             lazy.layout.shrink(),
-             lazy.layout.decrease_nmaster(),
-             desc='Shrink window (MonadTall), decrease number in master pane (Tile)'
+             lazy.layout.left(),
+             desc='Move focus left in current stack pane'
              ),
          Key([mod], "l",
-             lazy.layout.grow(),
-             lazy.layout.increase_nmaster(),
-             desc='Expand window (MonadTall), increase number in master pane (Tile)'
+             lazy.layout.right(),
+             desc='Move focus right in current stack pane'
              ),
+        Key([mod, "shift"], "j",
+            lazy.layout.shuffle_down()
+            ),
+        Key([mod, "shift"], "k",
+            lazy.layout.shuffle_up()
+            ),
+        Key([mod, "shift"], "h",
+            lazy.layout.shuffle_left()
+            ),
+        Key([mod, "shift"], "l",
+            lazy.layout.shuffle_right()
+            ),
+        Key([mod, "control"], "j",
+            lazy.layout.shrink()
+            ),
+        Key([mod, "control"], "k",
+            lazy.layout.grow()
+            ),
          Key([mod], "n",
              lazy.layout.normalize(),
              desc='normalize window size ratios'
@@ -127,8 +133,7 @@ keys = [
              [], "XF86AudioMute",
              lazy.spawn("amixer -c 0 -q set Master toggle")
          ),
-         # Key(
-             # [], "XF86AudioPlay",
+         # Key( [], "XF86AudioPlay",
              # lazy.function(playpause)
          # ),
          # Key(
@@ -149,10 +154,10 @@ keys = [
          Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 10")),
          Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 10")),
          # Printscreen
-         Key([], "Print", lazy.spawn("scrot -s 'screenshot-%Y-%m-%d-%s_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f' -e 'mv $f /home/magnus/Pictures/Screenshots'")),
+         Key([], "Print", lazy.spawn("scrot -s '/home/magnus/Pictures/Screenshots/screenshot-%Y-%m-%d-%s_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'")),
          # Set 2 monitors 
          Key([mod], "p",
-             lazy.spawn("xrandr --output eDP1 --mode 1366x768 --pos 0x0 --rotate normal --right-of HDMI1 --output HDMI1 --mode 1600x900 --pos 0x0 --rotate normal --right-of eDP1 --output HDMI2 --off"),
+             lazy.spawn("xrandr --output edp1 --mode 1366x768 --pos 0x0 --rotate normal --right-of hdmi1 --output hdmi1 --mode 1600x900 --pos 0x0 --rotate normal --right-of edp1 --output hdmi2 --off"),
              lazy.restart()
              )
          # Dmenu scripts launched using the key chord SUPER+p followed by 'key'

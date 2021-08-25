@@ -107,6 +107,10 @@ source /usr/share/nvm/init-nvm.sh
 export PATH=$PATH:/home/magnus/.local/bin
 source '/home/magnus/.local/lib/azure-cli/az.completion'
 
+
+# Setting fd as the default source for fzf
+export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
+
 # User configuration
 # Always work in a tmux session if tmux is installed
 # https://github.com/chrishunt/dot-files/blob/master/.zshrc

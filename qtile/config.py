@@ -154,6 +154,26 @@ def init_widgets_list():
                        background = colors[0],
                        padding = 5
                        ),
+              widget.Sep(
+                       linewidth = 0,
+                       padding = 6,
+                       foreground = colors[0],
+                       background = colors[0]
+                       ),
+              widget.BatteryIcon(
+                       foreground = colors[2],
+                       background = colors[0],
+                       ),
+              widget.Battery(
+                       foreground = colors[2],
+                       background = colors[0],
+                       ),
+              widget.Sep(
+                       linewidth = 0,
+                       padding = 6,
+                       foreground = colors[0],
+                       background = colors[0]
+                       ),
               widget.TextBox(
                        text = " 🖬",
                        foreground = colors[2],

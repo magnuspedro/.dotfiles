@@ -3,8 +3,8 @@ my_term = "alacritty"
 group_names = [("CHAT", {'layout': 'treetab'}),
                ("WWW", {'layout': 'monadtall'}),
                ("DEV", {'layout': 'monadtall'}),
-               ("LOGS", {'layout': 'max'}),
                ("TOOL", {'layout': 'monadtall'}),
+               ("LOGS", {'layout': 'max'}),
                ("MUS", {'layout': 'monadtall'}),
                ("VPN", {'layout': 'monadtall'}),
                ("OTHER", {'layout': 'floating'})]
