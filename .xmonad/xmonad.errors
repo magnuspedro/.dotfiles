@@ -1,7 +1,7 @@
 
-xmonad.hs:68:11: warning: [-Wdeprecations]
+xmonad.hs:67:11: warning: [-Wdeprecations]
     In the use of ‘spacing’ (imported from XMonad.Layout.Spacing):
     Deprecated: "Use spacingRaw instead."
    |
-68 |         $ spacing 3
+67 |         $ spacing 3
    |           ^^^^^^^
