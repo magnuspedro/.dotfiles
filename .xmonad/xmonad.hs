@@ -48,7 +48,8 @@ modm = mod4Mask
 
 myWorkspaces :: [WorkspaceId]
 --myWorkspaces = map show [1..9]
-myWorkspaces = ["chats", "www", "dev", "tools", "logs", "vpn", "..."]
+myWorkspaces = ["chats", "www", "dev", "tools", "logs", "mus", "vpn", "..."]
+
 myFont :: String
 myFont = "xft:Mononoki:size=10:antialias=true:hinting=true,xft:FontAwesome:size=10"
 
@@ -106,6 +107,8 @@ myTabTheme = def { fontName            = myFont
 -- The layout hook
 myLayoutHook = avoidStruts 
                $ onWorkspace (head myWorkspaces) tabs
+               $ onWorkspace (myWorkspaces !! 5)  monocle
+               $ onWorkspace (myWorkspaces !! 6)  monocle
                $ mouseResize 
                $ windowArrange 
                $ mkToggle (NBFULL ?? NOBORDERS ?? EOT)
