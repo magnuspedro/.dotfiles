@@ -59,10 +59,10 @@ myTerminal = "alacritty"
 myStartupHook :: X ()
 myStartupHook = do
     setWMName "LG3D"
-    spawn "/usr/bin/dunst" 
-    spawn "/usr/bin/picom"
-    spawn "nitrogen --restore"
-    spawn "xmodmap ~/.xmodmap"
+    spawn "/usr/bin/dunst &" 
+    spawn "/usr/bin/picom &"
+    spawn "nitrogen --restore &"
+    spawn "xmodmap ~/.xmodmap &"
 
 tall    = renamed [Replace "tall"]
         $ spacing 3
