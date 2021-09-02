@@ -13,8 +13,10 @@ import XMonad.Actions.MouseResize (mouseResize)
 
 import qualified XMonad.StackSet as W
 import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(Toggle))
+
 import XMonad.Util.EZConfig
 import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
+import XMonad.Util.SpawnOnce
 
 import XMonad.Hooks.ManageDocks (avoidStruts, docks, docksEventHook, manageDocks, ToggleStruts(..))
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarStrip, xmobarColor, shorten, PP(..))
@@ -59,10 +61,10 @@ myTerminal = "alacritty"
 myStartupHook :: X ()
 myStartupHook = do
     setWMName "LG3D"
-    spawn "/usr/bin/dunst &" 
-    spawn "/usr/bin/picom &"
-    spawn "nitrogen --restore &"
-    spawn "xmodmap ~/.xmodmap &"
+    spawnOnce "/usr/bin/dunst &" 
+    spawnOnce "/usr/bin/picom &"
+    spawnOnce "nitrogen --restore &"
+    spawnOnce "xmodmap ~/.xmodmap &"
 
 tall    = renamed [Replace "tall"]
         $ spacing 3
@@ -201,7 +203,7 @@ myKeys = [
     , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 5")
 
     -- PrintScreen
-    ,("<Print>", spawn "scrot -s '/home/magnus/Pictures/Screenshots/screenshot-%Y-%m-%d-%s_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'")
+    ,("<Print>", spawn "flameshot gui -p /home/magnus/Pictures/Screenshots")
 
     -- Promt
     , ("M-o", runOrRaisePrompt myXPConfig)
