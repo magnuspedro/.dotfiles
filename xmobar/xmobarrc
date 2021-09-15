@@ -48,6 +48,6 @@ Config { font = "xft:Mononoki Nerd Font:pixelsize=14:antialias=true:hinting=true
        , sepChar = "%"
        , alignSep = "}{"
        , template = " <fc=#fe8019>λ</fc> | %battery% | %StdinReader% | }\
-                    \{ | <fc=#b8bb26>  %memory%</fc> | <fc=#83a598>  %cpu%</fc> | <fc=#d65d0e>%default:Master%</fc> | <fc=#fabd2f>  %pacupdate%</fc> | <fc=#d3869b>  %dynnetwork%</fc> | <fc=#fabd2f>  %date%</fc> "
+                    \{ | <fc=#b8bb26>  %memory%</fc> | <fc=#83a598>  %cpu%</fc> | <fc=#d65d0e>%default:Master%</fc> | <fc=#fabd2f>  %pacupdate%</fc> | <fc=#d3869b>  %dynnetwork%</fc> | <fc=#fabd2f>  %date%</fc> "
        }
        --          

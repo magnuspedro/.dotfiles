@@ -62,7 +62,7 @@ myStartupHook :: X ()
 myStartupHook = do
     setWMName "LG3D"
     spawnOnce "/usr/bin/dunst &" 
-    spawnOnce "/usr/bin/picom &"
+    spawnOnce "/usr/bin/picom --experimental-backends &"
     spawnOnce "nitrogen --restore &"
     spawnOnce "xmodmap ~/.xmodmap &"
 
