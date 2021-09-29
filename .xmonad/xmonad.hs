@@ -62,7 +62,7 @@ myStartupHook :: X ()
 myStartupHook = do
     setWMName "LG3D"
     spawnOnce "/usr/bin/dunst &" 
-    spawnOnce "/usr/bin/picom --experimental-backends &"
+    spawnOnce "/usr/bin/picom&"
     spawnOnce "nitrogen --restore &"
     spawnOnce "xmodmap ~/.xmodmap &"
 
@@ -243,7 +243,7 @@ main = do
         , focusFollowsMouse  = False
         , borderWidth        = 3 
         , terminal           = myTerminal
-        , focusedBorderColor = "#cc241d"
+        , focusedBorderColor = "#b16286"
         , normalBorderColor  = "#ebdbb2"
         , layoutHook         = myLayoutHook
         , startupHook        = myStartupHook
