@@ -122,3 +122,5 @@ export EDITOR='nvim'
 # Add JBang to environment
 alias j!=jbang
 export PATH="$HOME/.jbang/bin:$PATH"
+
+[ -f "/home/magnus/.ghcup/env" ] && source "/home/magnus/.ghcup/env" # ghcup-env
