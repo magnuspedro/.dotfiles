@@ -103,9 +103,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source /usr/share/nvm/init-nvm.sh
-export PATH=$PATH:/home/magnus/.local/bin
-source '/home/magnus/.local/lib/azure-cli/az.completion'
 
 
 # Setting fd as the default source for fzf
@@ -121,3 +118,7 @@ export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
 #fi
 
 export EDITOR='nvim'
+
+# Add JBang to environment
+alias j!=jbang
+export PATH="$HOME/.jbang/bin:$PATH"

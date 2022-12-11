@@ -1,7 +1,1 @@
-
-xmonad.hs:70:11: warning: [-Wdeprecations]
-    In the use of ‘spacing’ (imported from XMonad.Layout.Spacing):
-    Deprecated: "Use spacingRaw instead."
-   |
-70 |         $ spacing 3
-   |           ^^^^^^^
+$ ghc --make xmonad.hs -i -ilib -fforce-recomp -main-is main -dynamic -v0 -outputdir /home/magnus/.xmonad/build-x86_64-linux -o /home/magnus/.xmonad/xmonad-x86_64-linux
