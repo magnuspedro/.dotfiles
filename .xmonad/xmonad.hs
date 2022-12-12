@@ -199,7 +199,7 @@ myKeys =
     ("M-S-n", sendMessage MirrorShrink), -- shrink tile
 
     -- Rofi
-    ("M-p", spawn "rofi -modi drun -show drun -theme gruvbox-dark-soft"),
+    ("M-p", spawn "rofi -modi drun -show drun -theme gruvbox-dark-hard"),
     -- Workspaces
     ("M-.", nextScreen), -- Switch focus to next monitor
     ("M-,", prevScreen), -- Switch focus to prev monitor
@@ -213,10 +213,10 @@ myKeys =
     ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 5"),
     ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 5"),
     -- PrintScreen
-    ("<Print>", spawn "flameshot gui -p /home/magnus/Pictures/Screenshots"),
+    ("<Print>", spawn "flameshot gui -p /home/magnus/Pictures/Screenshots")
     -- Promt
-    ("M-o", runOrRaisePrompt myXPConfig)
-  ]
+    --("M-o", runOrRaisePrompt myXPConfig)
+    ]
 
 myRemKeys :: [String]
 myRemKeys =
