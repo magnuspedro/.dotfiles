@@ -58,6 +58,7 @@ myStartupHook = do
   spawnOnce "/usr/bin/picom&"
   spawnOnce "nitrogen --restore &"
   spawnOnce "xmodmap ~/.xmodmap &"
+  spawnOnce "nm-applet &"
 
 tall =
   renamed [Replace "tall"] $
@@ -112,13 +113,10 @@ myTabTheme =
 -- The layout hook
 myLayoutHook =
   avoidStruts $
-    onWorkspace (head myWorkspaces) tabs $
-      onWorkspace (myWorkspaces !! 5) monocle $
-        onWorkspace (myWorkspaces !! 6) monocle $
-          mouseResize $
-            windowArrange $
-              mkToggle (NBFULL ?? NOBORDERS ?? EOT) $
-                myDefaultLayout
+    mouseResize $
+      windowArrange $
+        T.toggleLayouts floats $
+          mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
   where
     myDefaultLayout =
       tall
