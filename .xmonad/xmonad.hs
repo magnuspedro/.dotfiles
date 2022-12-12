@@ -1,18 +1,28 @@
+-- Base
+import XMonad
+import System.Exit (exitSuccess)
+import System.IO (hPutStrLn)
+import qualified XMonad.StackSet as W
+
+-- Data 
 import Data.List (isInfixOf, isPrefixOf)
 import Data.Monoid (Endo)
 import Data.Time.Calendar
 import Data.Time.Clock
-import System.Exit (exitSuccess)
-import System.IO (hPutStrLn)
-import XMonad
+
+-- Actions
 import XMonad.Actions.CycleWS (Direction1D (..), WSType (..), moveTo, nextScreen, prevScreen, shiftTo)
 import XMonad.Actions.MouseResize (mouseResize)
 import XMonad.Actions.WithAll (killAll, sinkAll)
+
+-- Hooks
 import XMonad.Hooks.DynamicLog (PP (..), dynamicLogWithPP, shorten, wrap, xmobarColor, xmobarPP, xmobarStrip)
 import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageDocks (ToggleStruts (..), avoidStruts, docks, docksEventHook, manageDocks)
 import XMonad.Hooks.SetWMName
+
+-- Layouts
 import XMonad.Layout.Accordion
 import XMonad.Layout.LimitWindows (decreaseLimit, increaseLimit, limitWindows)
 import XMonad.Layout.MultiToggle (EOT (EOT), mkToggle, single, (??))
@@ -30,10 +40,11 @@ import XMonad.Layout.ThreeColumns
 import qualified XMonad.Layout.ToggleLayouts as T (ToggleLayout (Toggle), toggleLayouts)
 import XMonad.Layout.WindowArranger (WindowArrangerMsg (..), windowArrange)
 import XMonad.Layout.WindowNavigation
+
+-- Utils
 import XMonad.Prompt
 import XMonad.Prompt.DirExec (dirExecPrompt)
 import XMonad.Prompt.RunOrRaise (runOrRaisePrompt)
-import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
 import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
@@ -42,14 +53,13 @@ modm :: KeyMask
 modm = mod4Mask
 
 myWorkspaces :: [WorkspaceId]
---myWorkspaces = map show [1..9]
 myWorkspaces = ["dev", "www", "tools", "mus", "..."]
 
 myFont :: String
 myFont = "xft:Mononoki:size=10:antialias=true:hinting=true,xft:FontAwesome:size=10"
 
 myTerminal :: String
-myTerminal = "alacritty"
+myTerminal = "alacritty" -- Set default terminal
 
 myStartupHook :: X ()
 myStartupHook = do
@@ -59,6 +69,8 @@ myStartupHook = do
   spawnOnce "nitrogen --restore &"
   spawnOnce "xmodmap ~/.xmodmap &"
   spawnOnce "nm-applet &"
+
+-- Windows manager
 
 tall =
   renamed [Replace "tall"] $
