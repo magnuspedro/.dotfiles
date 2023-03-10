@@ -1,27 +1,23 @@
 -- Base
-import XMonad
-import System.Exit (exitSuccess)
-import System.IO (hPutStrLn)
-import qualified XMonad.StackSet as W
 
--- Data 
+-- Data
 import Data.List (isInfixOf, isPrefixOf)
 import Data.Monoid (Endo)
 import Data.Time.Calendar
 import Data.Time.Clock
-
+import System.Exit (exitSuccess)
+import System.IO (hPutStrLn)
+import XMonad
 -- Actions
 import XMonad.Actions.CycleWS (Direction1D (..), WSType (..), moveTo, nextScreen, prevScreen, shiftTo)
 import XMonad.Actions.MouseResize (mouseResize)
 import XMonad.Actions.WithAll (killAll, sinkAll)
-
 -- Hooks
 import XMonad.Hooks.DynamicLog (PP (..), dynamicLogWithPP, shorten, wrap, xmobarColor, xmobarPP, xmobarStrip)
 import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageDocks (ToggleStruts (..), avoidStruts, docks, docksEventHook, manageDocks)
 import XMonad.Hooks.SetWMName
-
 -- Layouts
 import XMonad.Layout.Accordion
 import XMonad.Layout.LimitWindows (decreaseLimit, increaseLimit, limitWindows)
@@ -40,11 +36,11 @@ import XMonad.Layout.ThreeColumns
 import qualified XMonad.Layout.ToggleLayouts as T (ToggleLayout (Toggle), toggleLayouts)
 import XMonad.Layout.WindowArranger (WindowArrangerMsg (..), windowArrange)
 import XMonad.Layout.WindowNavigation
-
 -- Utils
 import XMonad.Prompt
 import XMonad.Prompt.DirExec (dirExecPrompt)
 import XMonad.Prompt.RunOrRaise (runOrRaisePrompt)
+import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
 import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
@@ -68,7 +64,6 @@ myStartupHook = do
   spawnOnce "/usr/bin/picom&"
   spawnOnce "nitrogen --restore &"
   spawnOnce "xmodmap ~/.xmodmap &"
-  spawnOnce "nm-applet &"
 
 -- Windows manager
 
@@ -186,8 +181,6 @@ myKeys =
   [ -- XMonad
     ("M-C-r", spawn "xmonad --recompile"), -- Recompiles xmonad
     ("M-S-r", spawn "xmonad --restart"), -- Restarts xmonad
-
-    -- Kill Windows
     ("M-S-q", io exitSuccess), -- Quits xmonad
     ("M-S-c", kill), -- kill client
     ("M-b", sendMessage ToggleStruts), -- Toggle xmobar
@@ -197,7 +190,7 @@ myKeys =
     ("M-m", windows W.swapMaster), -- Set master
     ("M-n", sendMessage MirrorExpand), -- expand tile
     ("M-S-n", sendMessage MirrorShrink), -- shrink tile
-
+    ("M-S-p", spawn "arandr"),
     -- Rofi
     ("M-p", spawn "rofi -modi drun -show drun -theme gruvbox-dark-hard"),
     -- Workspaces
@@ -210,13 +203,13 @@ myKeys =
     ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 5%-"),
     ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 5%+"),
     ("<XF86AudioMute>", spawn "amixer -q sset Master toggle"),
-    ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 5"),
-    ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 5"),
+    ("<XF86MonBrightnessDown>", spawn "~/.dotfiles/brightness.sh - eDP-1 0.1"),
+    ("<XF86MonBrightnessUp>", spawn "~/.dotfiles/brightness.sh + eDP-1 0.1"),
     -- PrintScreen
     ("<Print>", spawn "flameshot gui -p /home/magnus/Pictures/Screenshots")
     -- Promt
     --("M-o", runOrRaisePrompt myXPConfig)
-    ]
+  ]
 
 myRemKeys :: [String]
 myRemKeys =
@@ -235,11 +228,8 @@ myManageHook =
       [ -- Firefox
         title =? "Mozilla Firefox" --> doShift (myWorkspaces !! 1),
         (className =? "Mozilla Firefox" <&&> resource =? "Dialog") --> doFloat,
-        -- Teams
-        className =? "Microsoft Teams - Preview" --> doShift (head myWorkspaces),
-        title =? "Microsoft Teams-Benachrichtigung" --> doFloat,
-        -- Slack
-        className =? "Slack" --> doShift (head myWorkspaces),
+        -- Spotify
+        className =? "spotify" --> doShift (myWorkspaces !! 3),
         -- Gimp
         stringProperty "WM_WINDOW_ROLE" =? "gimp-message-dialog" --> doFloat,
         -- Generic
