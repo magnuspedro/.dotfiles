@@ -1,5 +1,3 @@
--- Base
-
 -- Data
 import Data.List (isInfixOf, isPrefixOf)
 import Data.Monoid (Endo)
@@ -44,22 +42,21 @@ import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
 import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
--- import XMonad.Util.Spotify
 
 modm :: KeyMask
 modm = mod4Mask
 
-myWorkspaces :: [WorkspaceId]
-myWorkspaces = ["dev", "www", "tools", "mus", "..."]
+workspace :: [WorkspaceId]
+workspace = ["dev", "www", "tools", "mus", "..."]
 
-myFont :: String
-myFont = "xft:Mononoki:size=10:antialias=true:hinting=true,xft:FontAwesome:size=10"
+defaultFont :: String
+defaultFont = "xft:Mononoki:size=10:antialias=true:hinting=true,xft:FontAwesome:size=10"
 
-myTerminal :: String
-myTerminal = "alacritty" -- Set default terminal
+defaultTerminal :: String
+defaultTerminal = "alacritty" -- Set default terminal
 
-myStartupHook :: X ()
-myStartupHook = do
+startup :: X ()
+startup = do
   setWMName "LG3D"
   spawnOnce "/usr/bin/dunst &"
   spawnOnce "/usr/bin/picom&"
@@ -70,7 +67,8 @@ myStartupHook = do
 
 tall =
   renamed [Replace "tall"] $
-    spacing 3 $ limitWindows 5 $
+    spacing 3 $
+      limitWindows 5 $
         ResizableTall 1 (3 / 100) (1 / 2) []
 
 monocle =
@@ -86,13 +84,13 @@ floats =
 
 tabs =
   renamed [Replace "tabs"] $
-    tabbed shrinkText myTabTheme
+    tabbed shrinkText tabTheme
 
 threeRow =
   renamed [Replace "threeRow"] $
     smartBorders $
       windowNavigation $
-        addTabs shrinkText myTabTheme $
+        addTabs shrinkText tabTheme $
           subLayout [] (smartBorders Simplest) $
             limitWindows 7
             -- Mirror takes a layout and rotates it by 90 degrees.
@@ -106,9 +104,9 @@ wideAccordion =
     Mirror Accordion
 
 -- setting colors for tabs layout and tabs sublayout.
-myTabTheme =
+tabTheme =
   def
-    { fontName = myFont,
+    { fontName = defaultFont,
       activeColor = "#83a598",
       inactiveColor = "#282828",
       activeBorderColor = "#458588",
@@ -118,14 +116,14 @@ myTabTheme =
     }
 
 -- The layout hook
-myLayoutHook =
+layout =
   avoidStruts $
     mouseResize $
       windowArrange $
         T.toggleLayouts floats $
-          mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
+          mkToggle (NBFULL ?? NOBORDERS ?? EOT) defaultLayout
   where
-    myDefaultLayout =
+    defaultLayout =
       tall
         ||| monocle
         ||| floats
@@ -133,51 +131,8 @@ myLayoutHook =
         ||| wideAccordion
         ||| threeRow
 
-myXPConfig :: XPConfig
-myXPConfig =
-  def
-    { font = "xft:Mononoki:size=10",
-      bgColor = "#b8bb26",
-      fgColor = "#1d2021",
-      bgHLight = "#ebdbb2",
-      fgHLight = "#fabd2f",
-      borderColor = "#b8bb26",
-      promptBorderWidth = 0,
-      position = CenteredAt {xpCenterY = 0.2, xpWidth = 0.7},
-      height = 50,
-      historySize = 256,
-      historyFilter = id,
-      defaultText = [],
-      autoComplete = Just 0, -- set Just 100000 for .1 sec
-      showCompletionOnTab = True,
-      searchPredicate = isPrefixOf,
-      alwaysHighlight = True,
-      maxComplRows = Nothing -- set to Just 5 for 5 rows
-    }
-
--- -d: dimensions, -t: title
-spawnFloatingTerm :: String -> X ()
-spawnFloatingTerm cmd = spawn $ "alacritty " ++ opt ++ " -e" ++ cmd
-  where
-    opt = col ++ lin ++ posx ++ posy ++ floatDecorator
-      where
-        col = "-o window.dimensions.columns=200 " -- 123
-        lin = "-o window.dimensions.lines=35 " -- 34
-        posx = "-o window.position.x=60 " -- 10
-        posy = "-o window.position.y=40 " -- 10
-        floatDecorator = "-t \"float\""
-
-replace :: Eq t => t -> t -> [t] -> [t]
-replace a b = map (\c -> if c == a then b else c)
-
-buildMaimString :: String -> String
-buildMaimString = wrap pre post . replace ' ' '_' . replace ':' '-' . take 19
-  where
-    pre = "/usr/bin/maim -m 10 /home/maxim/bilder/screenshots/"
-    post = ".png"
-
-myKeys :: [(String, X ())]
-myKeys =
+keyBinds :: [(String, X ())]
+keyBinds =
   [ -- XMonad
     ("M-C-r", spawn "xmonad --recompile"), -- Recompiles xmonad
     ("M-S-r", spawn "xmonad --restart"), -- Restarts xmonad
@@ -191,6 +146,10 @@ myKeys =
     ("M-n", sendMessage MirrorExpand), -- expand tile
     ("M-S-n", sendMessage MirrorShrink), -- shrink tile
     ("M-S-p", spawn "arandr"),
+    ("M-j", windows W.focusUp),
+    ("M-k", windows W.focusDown),
+    ("M-S-j", windows W.swapUp),
+    ("M-S-k", windows W.swapDown),
     -- Rofi
     ("M-p", spawn "rofi -modi drun -show drun -theme gruvbox-dark-hard"),
     -- Workspaces
@@ -198,7 +157,7 @@ myKeys =
     ("M-,", prevScreen), -- Switch focus to prev monitor
 
     -- Override
-    ("M-<Return>", spawn myTerminal),
+    ("M-<Return>", spawn defaultTerminal),
     -- Media Keys
     ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 5%-"),
     ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 5%+"),
@@ -213,8 +172,8 @@ myKeys =
     ("<Print>", spawn "flameshot gui -p /home/magnus/Pictures/Screenshots")
   ]
 
-myRemKeys :: [String]
-myRemKeys =
+removeKeybinds :: [String]
+removeKeybinds =
   [ "M-S-<Return>",
     "M-S-q",
     "M-q"
@@ -223,15 +182,15 @@ myRemKeys =
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
-myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
-myManageHook =
+appConfig :: XMonad.Query (Data.Monoid.Endo WindowSet)
+appConfig =
   insertPosition Below Newer
     <+> composeAll
       [ -- Firefox
-        title =? "Mozilla Firefox" --> doShift (myWorkspaces !! 1),
+        title =? "Mozilla Firefox" --> doShift (workspace !! 1),
         (className =? "Mozilla Firefox" <&&> resource =? "Dialog") --> doFloat,
         -- Spotify
-        className =? "Spotify" --> doShift (myWorkspaces !! 3),
+        className =? "Spotify" --> doShift (workspace !! 3),
         -- Gimp
         stringProperty "WM_WINDOW_ROLE" =? "gimp-message-dialog" --> doFloat,
         -- Generic
@@ -248,13 +207,13 @@ main = do
           { modMask = modm,
             focusFollowsMouse = False,
             borderWidth = 3,
-            terminal = myTerminal,
+            terminal = defaultTerminal,
             focusedBorderColor = "#b16286",
             normalBorderColor = "#ebdbb2",
-            layoutHook = myLayoutHook,
-            startupHook = myStartupHook,
-            workspaces = myWorkspaces,
-            manageHook = myManageHook,
+            layoutHook = layout,
+            startupHook = startup,
+            workspaces = workspace,
+            manageHook = appConfig,
             logHook =
               dynamicLogWithPP
                 xmobarPP
@@ -272,5 +231,5 @@ main = do
                     ppOrder = \(ws : l : t : ex) -> [ws, l] ++ ex ++ [t]
                   }
           }
-          `removeKeysP` myRemKeys
-          `additionalKeysP` myKeys
+          `removeKeysP` removeKeybinds
+          `additionalKeysP` keyBinds
