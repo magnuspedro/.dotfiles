@@ -44,6 +44,7 @@ import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
 import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
+-- import XMonad.Util.Spotify
 
 modm :: KeyMask
 modm = mod4Mask
@@ -204,10 +205,12 @@ myKeys =
     ("<XF86AudioMute>", spawn "amixer -q sset Master toggle"),
     ("<XF86MonBrightnessDown>", spawn "~/.dotfiles/brightness.sh - eDP-1 0.1"),
     ("<XF86MonBrightnessUp>", spawn "~/.dotfiles/brightness.sh + eDP-1 0.1"),
+    ("<XF86AudioPrev>", spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"),
+    ("<XF86AudioNext>", spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"),
+    ("<XF86AudioPlay>", spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"),
+    ("<XF86AudioStop>", spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"),
     -- PrintScreen
     ("<Print>", spawn "flameshot gui -p /home/magnus/Pictures/Screenshots")
-    -- Promt
-    --("M-o", runOrRaisePrompt myXPConfig)
   ]
 
 myRemKeys :: [String]
@@ -228,7 +231,7 @@ myManageHook =
         title =? "Mozilla Firefox" --> doShift (myWorkspaces !! 1),
         (className =? "Mozilla Firefox" <&&> resource =? "Dialog") --> doFloat,
         -- Spotify
-        className =? "spotify" --> doShift (myWorkspaces !! 3),
+        className =? "Spotify" --> doShift (myWorkspaces !! 3),
         -- Gimp
         stringProperty "WM_WINDOW_ROLE" =? "gimp-message-dialog" --> doFloat,
         -- Generic
