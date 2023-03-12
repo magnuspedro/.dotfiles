@@ -63,7 +63,7 @@ myStartupHook = do
   setWMName "LG3D"
   spawnOnce "/usr/bin/dunst &"
   spawnOnce "/usr/bin/picom&"
-  spawnOnce "nitrogen --restore &"
+  spawnOnce "feh --bg-fill ~/Pictures/Wallpaper/gruvbox_blackhole_super_scale.png &"
   spawnOnce "xmodmap ~/.xmodmap &"
 
 -- Windows manager

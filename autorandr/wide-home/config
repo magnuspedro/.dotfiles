@@ -6,7 +6,8 @@ output DP-1
 crtc 1
 mode 2560x1080
 pos 0x0
-rate 59.98
+primary
+rate 74.99
 x-prop-audio auto
 x-prop-broadcast_rgb Automatic
 x-prop-colorspace Default
@@ -16,7 +17,6 @@ output eDP-1
 crtc 0
 mode 1920x1080
 pos 262x1080
-primary
 rate 60.00
 x-prop-broadcast_rgb Automatic
 x-prop-colorspace Default
