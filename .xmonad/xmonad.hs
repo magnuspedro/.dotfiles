@@ -69,8 +69,7 @@ myStartupHook = do
 
 tall =
   renamed [Replace "tall"] $
-    spacing 3 $
-      limitWindows 5 $
+    spacing 3 $ limitWindows 5 $
         ResizableTall 1 (3 / 100) (1 / 2) []
 
 monocle =
