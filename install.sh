@@ -1,4 +1,2 @@
-yay -S neovim feh autorandr nvim ranger picom dnust alacritty rofi flameshot spotifywm-git
+yay -S neovim feh autorandr nvim ranger picom dnust alacritty rofi flameshot spotifywm-git spotify
 
-
-# autorandr config location .config
