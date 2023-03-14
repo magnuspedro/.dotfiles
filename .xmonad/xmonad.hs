@@ -53,7 +53,7 @@ defaultFont :: String
 defaultFont = "xft:Mononoki:size=10:antialias=true:hinting=true,xft:FontAwesome:size=10"
 
 defaultTerminal :: String
-defaultTerminal = "alacritty" -- Set default terminal
+defaultTerminal = "alacritty"
 
 startup :: X ()
 startup = do
@@ -62,8 +62,6 @@ startup = do
   spawnOnce "/usr/bin/picom&"
   spawnOnce "feh --bg-fill ~/Pictures/Wallpaper/gruvbox_blackhole_super_scale.png &"
   spawnOnce "xmodmap ~/.xmodmap &"
-
--- Windows manager
 
 tall =
   renamed [Replace "tall"] $
@@ -74,12 +72,12 @@ tall =
 monocle =
   renamed [Replace "full"] $
     noBorders $
-      limitWindows 5 $
+      limitWindows 5
         Full
 
 floats =
   renamed [Replace "flts"] $
-    noBorders $
+    noBorders
       simplestFloat
 
 tabs =
@@ -188,7 +186,8 @@ appConfig =
     <+> composeAll
       [ -- Firefox
         title =? "Mozilla Firefox" --> doShift (workspace !! 1),
-        (className =? "Mozilla Firefox" <&&> resource =? "Dialog") --> doFloat,
+        (className =? "firefox" <&&> resource =? "Dialog") --> doFloat,
+        (className =? "Places") --> doFloat,
         -- Spotify
         className =? "Spotify" --> doShift (workspace !! 3),
         -- Gimp
