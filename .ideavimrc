@@ -1,0 +1,38 @@
+let g:mapleader = "\<Space>"
+set clipboard += unnamed
+set relativenumber
+set number
+set surround
+
+
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+
+
+nnoremap <leader>. `.
+nnoremap Y y$
+
+vnoremap <leader>p "_dP
+
+nnoremap <leader>; A;<Esc>
+nnoremap <leader>, A,<Esc>
+
+nnoremap gi :action GotoImplementation<CR>
+
+nnoremap <c-p> :action GotoFile<CR>
+
+nnoremap <c-f> :action FindInPath<CR>
+
+nnoremap <leader>f :action ReformatCode<CR>
+
+map <c-n> :action SelectNextOccurrence<CR>
+
+nnoremap <leader>/ :action Find<CR>
+
+nnoremap <leader>r :action Replace<CR>
+
+map <leader>s :action Switcher<CR>
+
+

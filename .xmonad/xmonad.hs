@@ -1,4 +1,4 @@
--- Data
+-- Data;
 import Data.List (isInfixOf, isPrefixOf)
 import Data.Monoid (Endo)
 import Data.Time.Calendar
@@ -141,13 +141,15 @@ keyBinds =
     ("M-t", withFocused $ windows . W.sink), -- Tile client again
     ("M-S-t", sinkAll), -- Push ALL floating windows to tile
     ("M-m", windows W.swapMaster), -- Set master
-    ("M-n", sendMessage MirrorExpand), -- expand tile
-    ("M-S-n", sendMessage MirrorShrink), -- shrink tile
+    ("M-S-=", sendMessage MirrorExpand), -- expand tile
+    ("M-S--", sendMessage MirrorShrink), -- shrink tile
     ("M-S-p", spawn "arandr"),
-    ("M-j", windows W.focusUp),
-    ("M-k", windows W.focusDown),
-    ("M-S-j", windows W.swapUp),
-    ("M-S-k", windows W.swapDown),
+    -- ("M-h", windows W.focusUp),
+    -- ("M-l", windows W.focusDown),
+    ("M-S-h", windows W.swapUp),
+    ("M-S-l", windows W.swapDown),
+    ("M--", sendMessage Shrink),
+    ("M-=", sendMessage Expand),
     -- Rofi
     ("M-p", spawn "rofi -modi drun -show drun -theme gruvbox-dark-hard"),
     -- Workspaces
