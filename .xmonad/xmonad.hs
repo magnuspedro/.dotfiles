@@ -169,14 +169,17 @@ keyBinds =
     ("<XF86AudioPlay>", spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"),
     ("<XF86AudioStop>", spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"),
     -- PrintScreen
-    ("<Print>", spawn "flameshot gui -p /home/magnus/Pictures/Screenshots")
+    ("<Print>", spawn "flameshot gui -p /home/magnus/Pictures/Screenshots"),
+    ("M-C-l", spawn "i3lock --image ~/Pictures/Wallpaper/gruvbox_blackhole.png --tiling -e")
   ]
 
 removeKeybinds :: [String]
 removeKeybinds =
   [ "M-S-<Return>",
     "M-S-q",
-    "M-q"
+    "M-q",
+    "M-h",
+    "M-l"
   ]
 
 windowCount :: X (Maybe String)
