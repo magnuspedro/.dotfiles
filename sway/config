@@ -23,7 +23,7 @@ set $menu wofi --show run
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /home/magnus/Pictures/arch-wallpaper.png fill
 #
 # Example configuration:
 #
@@ -179,22 +179,34 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
+    bindsym $left resize grow width 10px
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym $right resize shrink width 10px
 
     # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
+    bindsym Left resize grow width 10px
     bindsym Down resize grow height 10px
     bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym Right resize shrink width 10px
 
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+#Set colors
+
+set $bg #171717
+set $fg #eff1f5
+set $br #a350d4
+
+# class
+client.focused           $br $br $fg $bg $br
+client.focused_inactive  $br $bg $fg $bg $bg
+client.unfocused         $bg $bg $fg $bg $bg
+
 
 #
 # Status Bar:
@@ -210,7 +222,9 @@ bar {
     colors {
         statusline #ffffff
         background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+	focused_workspace  #a350d4 #a350d4 #eff1f5
+	active_workspace   #a350d4 #a350d450 #cccccc
+        inactive_workspace #323232 #323232 #FFFFFF
     }
 }
 
