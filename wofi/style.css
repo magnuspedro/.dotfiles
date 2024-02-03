@@ -35,8 +35,8 @@ window {
     padding: 10px;
     margin: 0px;
     font-size: 28px;
-	color: #8EC07C;
-	background-color: #554444;
+	color: #FFF;
+	background-color: #511C70;
 }
 
 #inner-box {
@@ -52,7 +52,7 @@ window {
 }
 
 #selected {
-	background-color: #608787;
+	background-color: #511C70;
 }
 
 #entry {
