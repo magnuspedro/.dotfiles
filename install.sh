@@ -12,3 +12,7 @@ TMUX_DIR="/home/$USER/.config/tmux"
 
 
 [ ! -d "$TPM_DIR" ] && git clone https://github.com/tmux-plugins/tpm /home/$USER/.tmux/plugins/tpm
+
+
+# Install dependencies
+sudo pacman -S noto-fonts-emoji
